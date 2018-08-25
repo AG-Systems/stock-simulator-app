@@ -1,0 +1,30 @@
+<div class="ui teal top fixed menu">
+    <div class="ui teal top attached menu">
+      <div class="ui dropdown icon item" (click)="sidebar()">
+        <i class="angle double right icon"></i>
+      </div>
+      
+          <div [@visibilityChanged]="visiblityState">
+            <div class="ui left fixed vertical menu">
+              <div class="item" (click)="sidebar()">
+                <i class="angle double left icon"></i>
+              </div>
+              <!--
+              <div class="item"> <img src="" /> 
+              </div>
+              -->
+              <a class="item">Features</a>
+              <a class="item">Testimonials</a>
+              <a class="item">Sign-in</a>
+            </div>
+        </div>
+      <div class="right menu">
+        <div class="ui right aligned category search item">
+          <div class="ui transparent icon input">
+
+          </div>
+          <div class="results"></div>
+        </div>
+      </div>
+    </div>
+</div>
