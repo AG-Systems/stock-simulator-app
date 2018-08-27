@@ -13,6 +13,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AccountComponent } from './account/account.component';
+import { TradeComponent } from './trade/trade.component';
 
 const appRoutes: Routes = [
   { 
@@ -22,7 +24,10 @@ const appRoutes: Routes = [
     path: '',
     component: HomeComponent
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'trade', component: TradeComponent },  
+  { path: 'account', component: AccountComponent },  
+  { path: '**', component: PageNotFoundComponent },
+
 ];
 
 @NgModule({
@@ -32,7 +37,9 @@ const appRoutes: Routes = [
     OverviewComponent,
     HomeComponent,
     StocksComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccountComponent,
+    TradeComponent
   ],
   imports: [
     BrowserModule,
