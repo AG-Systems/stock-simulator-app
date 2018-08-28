@@ -18,7 +18,7 @@ import $ from 'jquery';
 })
 export class NavbarComponent implements OnInit {
   visiblityState = 'shown';
-  
+  stocksearch = "";
   stocks = [
     { title: '$TSLA - Tesla' },
     { title: '$FB- Facebook' },
@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
           
   }
   
+
   sidebar() {
     if (this.visiblityState === 'hidden')
     {
