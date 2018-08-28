@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     component: StocksComponent },
   {
     path: '',
-    component: HomeComponent
+    component: OverviewComponent
   },
   { path: 'trade', component: TradeComponent },  
   { path: 'account', component: AccountComponent },  
