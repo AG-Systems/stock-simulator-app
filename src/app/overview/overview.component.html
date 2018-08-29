@@ -26,7 +26,7 @@
                         <img src="{{ '//logo.clearbit.com/' + stock.name + '.com' }}" height="80" width="80" />
                     </div>
                     <div class="content" style="float: left;">
-                      <a class="header">{{ stock.name }}</a>
+                      <a routerLink="{{ 'stocks/' + stock.symbol.toLowerCase() }}" class="header">{{ stock.name }}</a>
                       <div class="meta">
                         <span>${{ stock.symbol }}</span>
                       </div>
