@@ -1,10 +1,12 @@
-<div class="container">
-    <div style="height: 20px; width: 100%;"></div>
+<div style="height: 20px; width: 100%;"></div>
+
+
+<div class="ui grid mobile or lower hidden">
     <!-- DESKTOP VIEW -->
-    <div class="row d-none d-lg-block">
-        <div class="col-sm-8">
+    <div class="row">
+        <div class="ten wide column mobile or lower hidden">
             <div style="display: block;">
-            <canvas baseChart width="400" height="400"
+            <canvas baseChart width="100%" 
                         [datasets]="lineChartData"
                         [labels]="lineChartLabels"
                         [options]="lineChartOptions"
@@ -13,28 +15,50 @@
                         [chartType]="lineChartType"></canvas>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div style="width: 100%; height: 400px;">
+        <div class="six wide column mobile or lower hidden">
+            
+            <div style="width: 100%;">
+                <div class="ui segment" style="width: 60%; min-width: 280px; margin: 0 auto;">
+                 <div class="ui divided items" style="max-height: 60vh; overflow-y: auto;">
+                    
+                  <div class="item" *ngFor="let stock of mystocks" style="height: 100px;">
+                    <div class="image">
+                        <img src="{{ '//logo.clearbit.com/' + stock.name + '.com' }}" height="80" width="80" />
+                    </div>
+                    <div class="content" style="float: left;">
+                      <a class="header">{{ stock.name }}</a>
+                      <div class="meta">
+                        <span>${{ stock.symbol }}</span>
+                      </div>
+                      <div class="description">
+                        <p></p>
+                      </div>
+                      <div class="extra">
+                        {{ stock.shares }} Shares
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>   
             </div>
+        </div>
+         
         </div>
     </div>
+</div>
+
+<div class="ui grid mobile only">
     
     <!-- MOBILE VIEW -->
-    <div class="row d-lg-none">
-        <div class="col-sm-8">
-            <div style="display: block;">
-            <canvas baseChart width="400" height="400"
+    <div class="twelve wide column">
+        <div style="display: block;">
+            <canvas baseChart width="100" height="100"
                         [datasets]="lineChartData"
                         [labels]="lineChartLabels"
                         [options]="lineChartOptions"
                         [colors]="lineChartColors"
                         [legend]="lineChartLegend"
                         [chartType]="lineChartType"></canvas>
-            </div>
         </div>
-        <div class="col-sm-4">
-            <div style="width: 100%; height: 400px;">
-            </div>
-        </div>
-    </div>  
+    </div>
 </div>
