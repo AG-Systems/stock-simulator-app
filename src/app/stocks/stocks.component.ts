@@ -9,6 +9,12 @@ import $ from 'jquery';
 })
 export class StocksComponent implements OnInit {
   
+  options = {
+      title : { text : 'simple chart' },
+      series: [{
+          data: [29.9, 71.5, 106.4, 129.2],
+      }]
+  };
   constructor(private route:ActivatedRoute) { 
 
   }
