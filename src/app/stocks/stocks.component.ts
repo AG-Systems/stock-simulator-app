@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import * as Highcharts from 'highcharts/highstock';
+import axios from 'axios';
 import $ from 'jquery';
 
 @Component({
@@ -9,12 +11,6 @@ import $ from 'jquery';
 })
 export class StocksComponent implements OnInit {
   
-  options = {
-      title : { text : 'simple chart' },
-      series: [{
-          data: [29.9, 71.5, 106.4, 129.2],
-      }]
-  };
   constructor(private route:ActivatedRoute) { 
 
   }
@@ -42,8 +38,9 @@ export class StocksComponent implements OnInit {
           107.73
       ],
   ]
-   // $.getJSON('https://www.highcharts.com/samples/data/aapl-c.json', function (data) {
-   /*
+
+   axios.get('http://stocks-ag-systems.c9users.io:8082/api/stock/' + this.route.snapshot.params["stock"])
+    .then((response) => {
       let chart = Highcharts.stockChart('container', {
   
           chart: {
@@ -91,14 +88,11 @@ export class StocksComponent implements OnInit {
               }]
           }
       });
-      */
-        this.options = {
-            title : { text : 'simple chart' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
-            }]
-        };
-  //});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   }
 
 }

@@ -1,12 +1,21 @@
 const express = require('express');
 const app = express();
 var router = express.Router();
-// Run the app by serving the static files
-// in the dist directory
+var axios = require("axios");
 
 
 app.get('/api/stock/:symbol', function (req, res) {
+  // https://api.iextrading.com/1.0
   let stocksymbol = req.params["symbol"];
+  
+  axios.get('https://api.iextrading.com/1.0/stock/' + stocksymbol + '/chart/1d')
+  .then(function (response) {
+    //console.log(response);
+    res.send(response)
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
   
   res.send(stocksymbol)
 })
@@ -19,11 +28,6 @@ if(process.argv.length <= 2)
     // Heroku port
     app.listen(process.env.PORT || 8080);
 } else {
-    router.get('/', (req, res) => res.send('Hello World!'))
-    router.get('/api/stock/:symbol', (req, res) => {
-      let stocksymbol = req.params["symbol"];
-      
-      res.send(stocksymbol)
-    })
-    app.listen(8081, () => console.log('Example app listening on port 3000!'))
+    
+    app.listen(8082, () => console.log('api listening on port 8082!'))
 }

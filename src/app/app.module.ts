@@ -6,7 +6,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ChartModule as HighChartsModule } from 'angular2-highcharts';
 import { OverviewComponent } from './overview/overview.component';
 
 
@@ -30,6 +29,7 @@ const appRoutes: Routes = [
   { path: '**', component: PageNotFoundComponent },
 
 ];
+declare var require: any;
 
 @NgModule({
   declarations: [
@@ -47,7 +47,6 @@ const appRoutes: Routes = [
     SuiModule,
     BrowserAnimationsModule,
     ChartsModule,
-    HighChartsModule.forRoot(require('highcharts/highstock')),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
