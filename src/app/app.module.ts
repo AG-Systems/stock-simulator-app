@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +16,9 @@ import { StocksComponent } from './stocks/stocks.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AccountComponent } from './account/account.component';
 import { TradeComponent } from './trade/trade.component';
+
+
+import { StocksService } from './stocks.service';
 
 const appRoutes: Routes = [
   { 
@@ -47,12 +51,13 @@ declare var require: any;
     SuiModule,
     BrowserAnimationsModule,
     ChartsModule,
+    HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [StocksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

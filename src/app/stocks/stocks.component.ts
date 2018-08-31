@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts/highstock';
 import axios from 'axios';
 import $ from 'jquery';
+import { StocksService } from '../stocks.service';
 
 @Component({
   selector: 'app-stocks',
@@ -11,88 +12,21 @@ import $ from 'jquery';
 })
 export class StocksComponent implements OnInit {
   
-  constructor(private route:ActivatedRoute) { 
+  
+  stock: any = [];
+  
+  
+  constructor(private route:ActivatedRoute, private stocksService: StocksService) { 
 
   }
   
   ngOnInit(): void {
-      let data = [
-      [
-          1472477400000,
-          106.82
-      ],
-      [
-          1472563800000,
-          106
-      ],
-      [
-          1472650200000,
-          106.1
-      ],
-      [
-          1472736600000,
-          106.73
-      ],
-      [
-          1472823000000,
-          107.73
-      ],
-  ]
-
-   axios.get('http://stocks-ag-systems.c9users.io:8082/api/stock/' + this.route.snapshot.params["stock"])
-    .then((response) => {
-      let chart = Highcharts.stockChart('container', {
-  
-          chart: {
-              height: 400
-          },
-  
-          title: {
-              text: 'Highstock Responsive Chart'
-          },
-  
-          subtitle: {
-              text: this.route.snapshot.params["stock"]
-          },
-  
-          rangeSelector: {
-              selected: 1
-          },
-  
-          series: [{
-              name: 'AAPL Stock Price',
-              data: data,
-              type: 'area',
-              threshold: null,
-              tooltip: {
-                  valueDecimals: 2
-              }
-          }],
-  
-          responsive: {
-              rules: [{
-                  condition: {
-                      maxWidth: 500
-                  },
-                  chartOptions: {
-                      chart: {
-                          height: 300
-                      },
-                      subtitle: {
-                          text: null
-                      },
-                      navigator: {
-                          enabled: false
-                      }
-                  }
-              }]
-          }
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
+    // Retrieve posts from the API
+    this.stocksService.getStock(this.route.snapshot.params["stock"]).subscribe(stock => {
+      this.stock = stock;
+      
+      console.log(stock);
     });
-
   }
 
 }

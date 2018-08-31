@@ -13,10 +13,10 @@
           <div class="item">
             <img src="https://s3.amazonaws.com/cdn.enveritasgroup.com/uploads/2017/05/robinhood-icon.png" /> 
           </div>
-          <a routerLink="" class="item"><i class="list icon"></i>Summary</a>
-          <a routerLink="trade" class="item"><i class="dollar sign icon"></i>Trade</a>
-          <a routerLink="account" class="item"><i class="wrench sign icon"></i>Account</a>
-          <a routerLink="logout" class="item"><i class="sign-out icon"></i>Logout</a>
+          <a (click)="sidebar()" routerLink="" class="item"><i class="list icon"></i>Summary</a>
+          <a (click)="sidebar()" routerLink="trade" class="item"><i class="dollar sign icon"></i>Trade</a>
+          <a (click)="sidebar()" routerLink="account" class="item"><i class="wrench sign icon"></i>Account</a>
+          <a (click)="sidebar()" routerLink="logout" class="item"><i class="sign-out icon"></i>Logout</a>
         </div>
     </div>
     <a routerLink="" class="item mobile or lower hidden">Summary</a>

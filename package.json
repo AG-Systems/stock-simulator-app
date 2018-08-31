@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "c9": "ng serve --host 0.0.0.0 --port 8080 --disable-host-check",
+    "c9-server": "ng build && node server.js",    
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +24,7 @@
     "@angular/router": "^6.1.0",
     "angular2-highcharts": "^0.5.5",
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
     "express": "^4.16.3",
@@ -30,7 +32,8 @@
     "jquery": "^3.3.1",
     "ng2-charts": "^1.6.0",
     "ng2-semantic-ui": "^0.9.7",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.3.0",
+    "rxjs-compat": "^6.3.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

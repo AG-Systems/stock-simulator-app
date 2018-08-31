@@ -1,33 +1,42 @@
+// Get dependencies
 const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
+// Get our API routes
+const api = require('./api');
+
 const app = express();
-var router = express.Router();
-var axios = require("axios");
 
+// Parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/api/stock/:symbol', function (req, res) {
-  // https://api.iextrading.com/1.0
-  let stocksymbol = req.params["symbol"];
-  
-  axios.get('https://api.iextrading.com/1.0/stock/' + stocksymbol + '/chart/1d')
-  .then(function (response) {
-    //console.log(response);
-    res.send(response)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  
-  res.send(stocksymbol)
-})
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')));
 
+// Set our api routes
+app.use('/api', api);
 
-if(process.argv.length <= 2)
-{
-    app.use(express.static(__dirname + '/dist'));
-    // Start the app by listening on the default
-    // Heroku port
-    app.listen(process.env.PORT || 8080);
-} else {
-    
-    app.listen(8082, () => console.log('api listening on port 8082!'))
-}
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/investments/index.html'));
+});
+
+/**
+ * Get port from environment and store in Express.
+ */
+//const port = process.env.PORT || '8081';
+const port = '8080'
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => console.log(`API running on localhost:${port}`));
