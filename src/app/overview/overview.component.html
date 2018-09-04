@@ -4,47 +4,42 @@
 <div class="ui grid mobile or lower hidden">
     <!-- DESKTOP VIEW -->
     <div class="row">
-        <div class="ten wide column mobile or lower hidden">
-            <div style="display: block;">
-            <canvas baseChart width="100%" 
+        <div id="container" style="margin: 0 auto;"></div>
+    </div>
+    
+    <div class="row" *ngFor="let stock of mystocks">
+      <div class="ui card" style="margin: 0 auto;">
+          <div class="content">
+            <a class="header" style="text-align: center;">{{ stock.name }}</a>
+            <div class="meta" style="text-align: center;">
+              <span>${{ stock.symbol }}</span>
+            </div>
+          </div>
+          <div class="extra content">
+                <canvas baseChart width="100%" 
                         [datasets]="lineChartData"
                         [labels]="lineChartLabels"
                         [options]="lineChartOptions"
                         [colors]="lineChartColors"
                         [legend]="lineChartLegend"
                         [chartType]="lineChartType"></canvas>
-            </div>
-        </div>
-        <div class="six wide column mobile or lower hidden">
-            
-            <div style="width: 100%;">
-                <div class="ui segment" style="width: 60%; min-width: 280px; margin: 0 auto;">
-                 <div class="ui divided items" style="max-height: 60vh; overflow-y: auto;">
-                    
-                  <div class="item" *ngFor="let stock of mystocks" style="height: 100px;">
-                    <div class="image">
-                        <img src="{{ '//logo.clearbit.com/' + stock.name + '.com' }}" height="80" width="80" />
-                    </div>
-                    <div class="content" style="float: left;">
-                      <a routerLink="{{ 'stocks/' + stock.symbol.toLowerCase() }}" class="header">{{ stock.name }}</a>
-                      <div class="meta">
-                        <span>${{ stock.symbol }}</span>
-                      </div>
-                      <div class="description">
-                        <p></p>
-                      </div>
-                      <div class="extra">
-                        {{ stock.shares }} Shares
-                      </div>
-                    </div>
-                  </div>
-                  
-                </div>   
-            </div>
-        </div>
-         
-        </div>
+          </div>
+          
+          <div class="extra content">
+            <a>
+              <i class="bars icon"></i>
+              {{ stock.shares }} shares
+            </a>
+            <span style="float: right;">
+              <i class="chart line icon"></i>
+              {{ stock.shares }}% gains/loss
+            </span>
+          </div>
+        </div>      
     </div>
+    
+
+    
 </div>
 
 <div class="ui grid mobile only">

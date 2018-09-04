@@ -23,4 +23,9 @@ export class StocksService {
     
   }
   
+  getOverview(): Observable<any> {
+    return this.http.get('/api/mystocks')
+      .map(res => res.json());
+  }
+  
 }

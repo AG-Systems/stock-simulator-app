@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import $ from 'jquery';
+import * as Highcharts from 'highcharts/highstock';
 
 @Component({
   selector: 'app-overview',
@@ -21,10 +22,11 @@ export class OverviewComponent implements OnInit {
   { id: 7, name: 'Intel', symbol: "INTC", shares: 5 },
 ];
 
+
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: ''},
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = ['8:30AM', '9:00AM', '10:00AM', '11:00AM', '12:00PM', '1:00PM', '2:00PM', '3:00PM', '4:00PM'];
   
   public lineChartOptions:any = {
     responsive: true
@@ -46,9 +48,86 @@ export class OverviewComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight; 
+    
+      let data = [
+      [
+          1472477400000,
+          106.82
+      ],
+      [
+          1472563800000,
+          106
+      ],
+      [
+          1472650200000,
+          106.1
+      ],
+      [
+          1472736600000,
+          106.73
+      ],
+      [
+          1472823000000,
+          107.73
+      ],
+      [
+          1472823000000,
+          107.73
+      ],
+      
+  ]
+
+      let chart = Highcharts.stockChart('container', {
+  
+          chart: {
+              height: 400
+          },
+  
+          title: {
+              text: 'Summary'
+          },
+  
+          subtitle: {
+              text: ""
+          },
+  
+          rangeSelector: {
+              selected: 1
+          },
+  
+          series: [{
+              name: 'AAPL Stock Price',
+              data: data,
+              type: 'area',
+              threshold: null,
+              tooltip: {
+                  valueDecimals: 2
+              }
+          }],
+  
+          responsive: {
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      chart: {
+                          height: 300
+                      },
+                      subtitle: {
+                          text: null
+                      },
+                      navigator: {
+                          enabled: false
+                      }
+                  }
+              }]
+          }
+      });
+    
   }
   /*
   @HostListener('window:resize', ['$event'])
